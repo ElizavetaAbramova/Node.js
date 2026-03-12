@@ -4,6 +4,7 @@ import { cd, ls, up } from "./navigation.js";
 import { convertCsv } from "./commands/csvToJson.js";
 import { convertJSON } from "./commands/jsonToCsv.js";
 import { count } from "./commands/count.js";
+import { hash } from "./commands/hash.js";
 
 const onCloseHandler = () => {
   console.log("Thank you for using Data Processing CLI!");
@@ -52,6 +53,10 @@ const main = async () => {
 
         case "count":
           await count(args);
+          break;
+
+        case "hash":
+          hash(args);
           break;
 
         case ".exit":
