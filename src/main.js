@@ -6,6 +6,8 @@ import { convertJSON } from "./commands/jsonToCsv.js";
 import { count } from "./commands/count.js";
 import { hash } from "./commands/hash.js";
 import { hashCompare } from "./commands/hashCompare.js";
+import { encrypt } from "./commands/encrypt.js";
+import { decrypt } from "./commands/decrypt.js";
 
 const onCloseHandler = () => {
   console.log("Thank you for using Data Processing CLI!");
@@ -62,6 +64,14 @@ const main = async () => {
 
         case "hash-compare":
           hashCompare(args);
+          break;
+
+        case "encrypt":
+          encrypt(args);
+          break;
+
+        case "decrypt":
+          decrypt(args);
           break;
 
         case ".exit":
