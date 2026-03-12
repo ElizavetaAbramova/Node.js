@@ -1,6 +1,8 @@
 import { createInterface } from "readline";
 import os from "os";
 import { cd, ls, up } from "./navigation.js";
+import { convertCsv } from "./commands/csvToJson.js";
+import { convertJSON } from "./commands/jsonToCsv.js";
 
 const onCloseHandler = () => {
   console.log("Thank you for using Data Processing CLI!");
@@ -37,6 +39,14 @@ const main = async () => {
 
         case "ls":
           await ls();
+          break;
+
+        case "csv-to-json":
+          await convertCsv(args);
+          break;
+
+        case "json-to-csv":
+          await convertJSON(args);
           break;
 
         case ".exit":
