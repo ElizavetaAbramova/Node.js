@@ -6,6 +6,9 @@ export const up = () => {
   const parent = path.dirname(current);
 
   if (current === parent) {
+    console.log(
+      `Directory can't be changed. You are currently in ${process.cwd()}`,
+    );
     return;
   }
   process.chdir(parent);
