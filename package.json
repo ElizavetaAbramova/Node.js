@@ -13,9 +13,21 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/ElizavetaAbramova/Data-Processing-CLI/issues"
   },
-  "homepage": "https://github.com/ElizavetaAbramova/Data-Processing-CLI#readme"
+  "homepage": "https://github.com/ElizavetaAbramova/Data-Processing-CLI#readme",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "fastify": "^5.8.2",
+    "uuid": "^13.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  }
 }
