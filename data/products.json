@@ -1,0 +1,18 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "IPhone 14 Pro Max",
+    "description": "The iPhone 14 Pro Max is the latest flagship smartphone from Apple, featuring a stunning 6.7-inch Super Retina XDR display, A16 Bionic chip for lightning-fast performance, and an advanced triple-camera system for professional-quality photos and videos. With its sleek design, long battery life, and cutting-edge features, the iPhone 14 Pro Max is the ultimate device for tech enthusiasts and Apple fans alike.",
+    "price": 1099.99,
+    "category": "Electronics",
+    "inStock": true
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "name": "Samsung Galaxy S23 Ultra",
+    "description": "The Samsung Galaxy S23 Ultra is a premium smartphone that offers a large 6.8-inch Dynamic AMOLED display, powered by the latest Snapdragon 8 Gen 2 processor for exceptional performance. It features a versatile quad-camera setup with a 200MP main sensor, allowing you to capture stunning photos and videos in any lighting condition. With its sleek design, long-lasting battery, and advanced features, the Galaxy S23 Ultra is a top choice for Android enthusiasts and those seeking a high-end mobile experience.",
+    "price": 1199.99,
+    "category": "Electronics",
+    "inStock": true
+  }
+]
