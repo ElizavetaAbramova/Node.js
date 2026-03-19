@@ -1,8 +1,14 @@
-import { type FastifyInstance, type FastifyReply } from "fastify";
+import {
+  type FastifyInstance,
+  type FastifyReply,
+  type FastifyRequest,
+} from "fastify";
 import type { Product } from "../types.js";
-import { readFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
 import { validate as isUuid } from "uuid";
+import { createProductSchema } from "../utils/productValidator.js";
+import { randomUUID } from "crypto";
 
 const PRODUCTS_FILE_PATH = join(process.cwd(), "data/products.json");
 
@@ -13,31 +19,61 @@ const getAllProducts = async (): Promise<Product[]> => {
   return products;
 };
 
-const getProductById = async (
-  productId: string,
-  reply: FastifyReply,
-): Promise<Product | null> => {
-  if (!isUuid(productId)) {
-    reply.status(400).send({ message: "Invalid productId" });
-    return null;
+const getProductById = async (request: FastifyRequest, reply: FastifyReply) => {
+  try {
+    const { productId } = request.params as { productId: string };
+
+    if (!isUuid(productId)) {
+      reply.status(400).send({ message: "Invalid productId" });
+      return null;
+    }
+
+    const products = await getAllProducts();
+    const product = products.find((p) => p.id === productId);
+
+    if (!product) {
+      reply.status(404).send({ message: `Product ${productId} not found` });
+      return null;
+    }
+
+    reply.status(200).send(product);
+    return product;
+  } catch (error) {
+    return reply.status(500).send({ message: "Internal server error" });
   }
+};
 
-  const products = await getAllProducts();
-  const product = products.find((p) => p.id === productId);
+const saveProducts = async (products: Product[]) => {
+  await writeFile(PRODUCTS_FILE_PATH, JSON.stringify(products, null, 2));
+};
 
-  if (!product) {
-    reply.status(404).send({ message: `Product ${productId} not found` });
-    return null;
+const postProduct = async (request: FastifyRequest, reply: FastifyReply) => {
+  try {
+    const parsed = createProductSchema.safeParse(request.body);
+
+    if (!parsed.success) {
+      return reply.status(400).send({
+        message: parsed.error.issues[0]?.message,
+      });
+    }
+
+    const newProduct: Product = {
+      id: randomUUID(),
+      ...parsed.data,
+    };
+
+    const products = await getAllProducts();
+    products.push(newProduct);
+    await saveProducts(products);
+
+    return reply.status(201).send(newProduct);
+  } catch (err) {
+    return reply.status(500).send({ message: "Internal server error" });
   }
-
-  return product;
 };
 
 export async function productsRoutes(app: FastifyInstance) {
   app.get("/api/products", getAllProducts);
-  app.get("/api/products/:productId", async (request, reply) => {
-    const { productId } = request.params as { productId: string };
-    const product = await getProductById(productId, reply);
-    reply.status(200).send(product);
-  });
+  app.get("/api/products/:productId", getProductById);
+  app.post("/api/products", postProduct);
 }
