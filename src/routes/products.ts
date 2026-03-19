@@ -47,7 +47,7 @@ const saveProducts = async (products: Product[]) => {
   await writeFile(PRODUCTS_FILE_PATH, JSON.stringify(products, null, 2));
 };
 
-const postProduct = async (request: FastifyRequest, reply: FastifyReply) => {
+const addProduct = async (request: FastifyRequest, reply: FastifyReply) => {
   try {
     const parsed = createProductSchema.safeParse(request.body);
 
@@ -97,9 +97,49 @@ const deleteProduct = async (request: FastifyRequest, reply: FastifyReply) => {
   return reply.status(204).send();
 };
 
+const updateProduct = async (request: FastifyRequest, reply: FastifyReply) => {
+  const { productId } = request.params as { productId: string };
+
+  if (!isUuid(productId)) {
+    return reply.status(400).send({
+      message: "Invalid productId",
+    });
+  }
+
+  const parsed = createProductSchema.safeParse(request.body);
+
+  if (!parsed.success) {
+    return reply.status(400).send({
+      message: parsed.error.issues[0]?.message,
+    });
+  }
+
+  const products = await getAllProducts();
+
+  const index = products.findIndex((p) => p.id === productId);
+
+  if (index === -1) {
+    return reply.status(404).send({
+      message: "Product not found",
+    });
+  }
+
+  const updatedProduct = {
+    id: productId,
+    ...parsed.data,
+  };
+
+  products[index] = updatedProduct;
+
+  await saveProducts(products);
+
+  return reply.status(200).send(updatedProduct);
+};
+
 export async function productsRoutes(app: FastifyInstance) {
   app.get("/api/products", getAllProducts);
   app.get("/api/products/:productId", getProductById);
-  app.post("/api/products", postProduct);
+  app.post("/api/products", addProduct);
   app.delete("/api/products/:productId", deleteProduct);
+  app.put("/api/products/:productId", updateProduct);
 }
