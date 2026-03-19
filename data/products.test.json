@@ -38,5 +38,21 @@
     "price": 999.99,
     "category": "Electronics",
     "inStock": true
+  },
+  {
+    "id": "aed9439d-9441-43a8-95fa-8f9f76e92ba9",
+    "name": "Test Product",
+    "description": "Test Description",
+    "price": 100,
+    "category": "test",
+    "inStock": true
+  },
+  {
+    "id": "c8e30c41-ed33-46a8-b428-8046e47187a4",
+    "name": "Test",
+    "description": "Test",
+    "price": 100,
+    "category": "test",
+    "inStock": true
   }
 ]
