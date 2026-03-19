@@ -72,8 +72,34 @@ const postProduct = async (request: FastifyRequest, reply: FastifyReply) => {
   }
 };
 
+const deleteProduct = async (request: FastifyRequest, reply: FastifyReply) => {
+  const { productId } = request.params as { productId: string };
+
+  if (!isUuid(productId)) {
+    return reply.status(400).send({
+      message: "Invalid productId",
+    });
+  }
+
+  const products = await getAllProducts();
+
+  const index = products.findIndex((p) => p.id === productId);
+
+  if (index === -1) {
+    return reply.status(404).send({
+      message: "Product not found",
+    });
+  }
+
+  products.splice(index, 1);
+  await saveProducts(products);
+
+  return reply.status(204).send();
+};
+
 export async function productsRoutes(app: FastifyInstance) {
   app.get("/api/products", getAllProducts);
   app.get("/api/products/:productId", getProductById);
   app.post("/api/products", postProduct);
+  app.delete("/api/products/:productId", deleteProduct);
 }

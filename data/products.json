@@ -16,19 +16,27 @@
     "inStock": true
   },
   {
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "name": "Sony WH-1000XM4",
+    "description": "The Sony WH-1000XM4 is a pair of wireless noise-canceling headphones that offer exceptional sound quality and industry-leading noise cancellation. With up to 30 hours of battery life, touch sensor controls, and support for high-resolution audio, these headphones are perfect for music lovers and frequent travelers who want to enjoy their favorite tunes without distractions.",
+    "price": 349.99,
+    "category": "Electronics",
+    "inStock": true
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "name": "Dell XPS 13",
+    "description": "The Dell XPS 13 is a premium ultrabook that features a stunning 13.4-inch InfinityEdge display, powered by the latest Intel processors for exceptional performance. With its sleek design, long battery life, and advanced features, the XPS 13 is an excellent choice for professionals and students who need a powerful and portable laptop.",
+    "price": 999.99,
+    "category": "Computers",
+    "inStock": true
+  },
+  {
     "id": "f009efd5-c97f-46cc-a279-1ffd55751003",
     "name": "Google Pixel 9",
     "description": "The best smartphone ever",
     "price": 999.99,
     "category": "Electronics",
     "inStock": true
-  },
-  {
-    "id": "cbf5e076-4157-4f50-b9b8-56882928faaf",
-    "name": "Huawei 23 Pro Ultra",
-    "description": "Just regular smartphone",
-    "price": 99.99,
-    "category": "Electronics",
-    "inStock": false
   }
 ]
