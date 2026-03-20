@@ -12,6 +12,10 @@ import { randomUUID } from "crypto";
 
 const PRODUCTS_FILE_PATH = join(process.cwd(), "data/products.json");
 
+type ProductsRoutesOptions = {
+  workDir?: string;
+};
+
 const getAllProducts = async (filePath: string): Promise<Product[]> => {
   const file = await readFile(filePath, "utf-8");
   const products: Product[] = JSON.parse(file);
@@ -154,8 +158,10 @@ const updateProduct = async (
 
 export async function productsRoutes(
   app: FastifyInstance,
-  workDir: string = PRODUCTS_FILE_PATH,
+  opts: ProductsRoutesOptions,
 ) {
+  const workDir = opts.workDir ?? PRODUCTS_FILE_PATH;
+
   app.get("/api/products", () => getAllProducts(workDir));
   app.get("/api/products/:productId", (request, reply) =>
     getProductById(request, reply, workDir),

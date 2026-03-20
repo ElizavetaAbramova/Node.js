@@ -12,7 +12,9 @@ const PRODUCTS_FILE_PATH_TEST = join(process.cwd(), "data/products.test.json");
 describe("CRUD scenario", () => {
   beforeAll(async () => {
     app = Fastify();
-    productsRoutes(app, PRODUCTS_FILE_PATH_TEST);
+    productsRoutes(app, {
+      workDir: PRODUCTS_FILE_PATH_TEST,
+    });
     await app.ready();
   });
 

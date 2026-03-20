@@ -54,5 +54,21 @@
     "price": 100,
     "category": "test",
     "inStock": true
+  },
+  {
+    "id": "6f2ae282-64f1-4783-8952-d92f4f58b248",
+    "name": "Test Product",
+    "description": "Test Description",
+    "price": 100,
+    "category": "test",
+    "inStock": true
+  },
+  {
+    "id": "61a7e8d6-c83e-4c0c-8a4b-3e91ee955eb3",
+    "name": "Test",
+    "description": "Test",
+    "price": 100,
+    "category": "test",
+    "inStock": true
   }
 ]

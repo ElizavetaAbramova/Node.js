@@ -38,5 +38,13 @@
     "price": 999.99,
     "category": "Electronics",
     "inStock": true
+  },
+  {
+    "id": "8001ddf7-9478-441e-b3d6-2d5e27cdbe42",
+    "name": "Huawei 23 Pro Ultra",
+    "description": "Just reqular smartphone",
+    "price": 99.99,
+    "category": "Electronics",
+    "inStock": false
   }
 ]
