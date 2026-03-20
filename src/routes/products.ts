@@ -146,7 +146,11 @@ const updateProduct = async (
 
   const updatedProduct = {
     id: productId,
-    ...parsed.data,
+    name: parsed.data.name,
+    description: parsed.data.description,
+    price: parsed.data.price,
+    category: parsed.data.category,
+    inStock: parsed.data.inStock,
   };
 
   products[index] = updatedProduct;

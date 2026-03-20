@@ -5,7 +5,7 @@ import { registerNotFoundHandler } from "./routes/not-found.js";
 export function buildApp() {
   const app = Fastify();
 
-  app.get("/", async (request, reply) => {
+  app.get("/", async () => {
     return { message: "Server is working, select route" };
   });
 
